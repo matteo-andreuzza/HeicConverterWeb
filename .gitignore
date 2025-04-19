@@ -5,3 +5,25 @@ build
 tests
 *venv/
 __pycache__/
+
+# Ignora file temporanei e di sistema
+__pycache__/
+*.py[cod]
+*.swp
+*.DS_Store
+
+# Cartelle degli upload e delle conversioni
+uploads/
+converted/
+converted.zip
+
+# Ambiente virtuale
+venv/
+.env/
+
+# File di log (se mai ne aggiungessi)
+*.log
+
+# PyCharm / VSCode / altri editor
+.idea/
+.vscode/

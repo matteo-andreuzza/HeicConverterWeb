@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converted Files - HEIC to JPG Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .download-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .download-all {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .download-all:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-all i {
+            margin-right: 0.5rem;
+        }
+        
+        .files-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .file-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+        
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        
+        .file-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .file-link:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .file-icon {
+            background-color: #e9ecef;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .file-name {
+            flex-grow: 1;
+        }
+        
+        .file-download {
+            color: var(--primary);
+            margin-left: 1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+        
+        .back-link:hover {
+            color: var(--secondary);
+        }
+        
+        .back-link i {
+            margin-right: 0.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-images"></i> file jpg convertiti</h1>
+            <p>Scarica i file individuali o insieme in una cartella zip</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="download-card">
+            <a href="{{ url_for('download_all') }}" class="download-all">
+                <i class="fas fa-file-archive"></i> Scarica tutti come zip
+            </a>
+            
+            <h3>Individual Files</h3>
+            <ul class="files-list">
+                {% for file in files %}
+                <li class="file-item">
+                    <a href="{{ url_for('download_file', filename=file) }}" class="file-link">
+                        <div class="file-icon">
+                            <i class="fas fa-file-image"></i>
+                        </div>
+                        <span class="file-name">{{ file }}</span>
+                        <span class="file-download">
+                            <i class="fas fa-download"></i>
+                        </span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i> Converti altri file
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
