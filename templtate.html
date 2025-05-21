@@ -1,0 +1,583 @@
+        String htmlTemplate = """
+        <!DOCTYPE html>
+        <html lang="it">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Hotel Aurora - Modulo di Registrazione</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    color: #333;
+                }
+                                .container {
+                
+                                            max-width: 800px;
+                
+                                            margin: 0 auto;
+                
+                                            border: 1px solid #ccc;
+                
+                                            padding: 20px;
+                
+                                            position: relative;
+                
+                                        }
+                
+                                        .header {
+                
+                                            display: flex;
+                
+                                            justify-content: space-between;
+                
+                                            align-items: flex-start;
+                
+                                            margin-bottom: 30px;
+                
+                                        }
+                
+                                        .hotel-info {
+                
+                                            flex: 1;
+                
+                                        }
+                
+                                        .logo {
+                
+                                            width: 150px;
+                
+                                            text-align: right;
+                
+                                        }
+                
+                                        h1 {
+                
+                                            margin: 0;
+                
+                                            font-size: 24px;
+                
+                                            font-weight: bold;
+                
+                                        }
+                
+                                        .address, .contact {
+                
+                                            margin: 5px 0 2px 0;
+                
+                                            font-size: 14px;
+                
+                                        }
+                
+                                        .form-row {
+                
+                                            display: flex;
+                
+                                            margin-bottom: 20px;
+                
+                                        }
+                
+                                        .form-column {
+                
+                                            flex: 1;
+                
+                                            padding-right: 15px;
+                
+                                        }
+                
+                                        .form-field {
+                
+                                            margin-bottom: 15px;
+                
+                                        }
+                
+                                        .form-field label {
+                
+                                            display: block;
+                
+                                            font-size: 14px;
+                
+                                            margin-bottom: 5px;
+                
+                                            font-weight: bold;
+                
+                                        }
+                
+                                        .form-field input, .form-field select {
+                
+                                            width: 100%;
+                
+                                            padding: 8px;
+                
+                                            border: 1px solid #ccc;
+                
+                                            border-radius: 4px;
+                
+                                            font-size: 14px;
+                
+                                        }
+                
+                                        .photo-container {
+                
+                                            width: 110px;
+                
+                                            height: 120px;
+                
+                                            border: 1px solid #ccc;
+                
+                                            margin-left: 15px;
+                
+                                            flex-shrink: 0;
+                
+                                            display: flex;
+                
+                                            justify-content: center;
+                
+                                            align-items: center;
+                
+                                            font-size: 12px;
+                
+                                            color: #999;
+                
+                                        }
+                
+                                        .privacy-section {
+                
+                                            margin-top: 30px;
+                
+                                            border-top: 1px solid #eee;
+                
+                                            padding-top: 15px;
+                
+                                        }
+                
+                                        .privacy-title {
+                
+                                            font-weight: bold;
+                
+                                            margin-bottom: 10px;
+                
+                                            font-size: 16px;
+                
+                                        }
+                
+                                        .privacy-text {
+                
+                                            font-size: 12px;
+                
+                                            margin-bottom: 10px;
+                
+                                            line-height: 1.4;
+                
+                                        }
+                
+                                        .privacy-option {
+                
+                                            margin-bottom: 15px;
+                
+                                        }
+                
+                                        .privacy-option-text {
+                
+                                            font-size: 12px;
+                
+                                            margin-bottom: 5px;
+                
+                                            line-height: 1.4;
+                
+                                        }
+                
+                                        .checkbox-group {
+                
+                                            display: flex;
+                
+                                            align-items: center;
+                
+                                        }
+                
+                                        .checkbox-option {
+                
+                                            margin-right: 15px;
+                
+                                            display: flex;
+                
+                                            align-items: center;
+                
+                                            font-size: 12px;
+                
+                                        }
+                
+                                        .checkbox-option input {
+                
+                                            margin-right: 5px;
+                
+                                        }
+                
+                                        .signature-section {
+                
+                                            margin-top: 30px;
+                
+                                            display: flex;
+                
+                                            flex-direction: column;
+                
+                                            align-items: flex-end;
+                
+                                            font-size: 12px;
+                
+                                        }
+                
+                                        .signature-box {
+                
+                                            width: 200px;
+                
+                                            height: 60px;
+                
+                                            border-bottom: 1px solid #333;
+                
+                                            margin-bottom: 10px;
+                
+                                        }
+                
+                                        .date-signature {
+                
+                                            text-align: center;
+                
+                                        }
+                
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                
+                                                                                                   <div class="header">
+                
+                                                                                                       <div class="hotel-info">
+                
+                                                                                                           <h1>Hotel Aurora</h1>
+                
+                                                                                                           <p class="address">Piazza Aurora 8</p>
+                
+                                                                                                           <p class="contact">direzione@hotelaurora.org</p>
+                
+                                                                                                           <p class="contact">+393470132287</p>
+                
+                                                                                                       </div>
+                
+                                                                                                       <div class="logo">
+                
+                                                                                                           <div style="text-align: center; border: 1px solid #ccc; padding: 10px;">
+                
+                                                                                                               HOTEL<br />
+                
+                                                                                                               <strong>AURORA</strong><br />
+                
+                                                                                                               <small>dal 1924</small>
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                                                                                                   </div>
+                
+                
+                
+                                                                                                   <div class="form-row">
+                
+                                                                                                       <div class="form-column">
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="email">Email</label>
+                
+                                                                                                               <input type="email" id="email" name="email" value="%EMAIL%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="contact_number">Contact number</label>
+                
+                                                                                                               <input type="text" id="contact_number" name="contact_number" value="%TELEFONO%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="document_number">Document number</label>
+                
+                                                                                                               <input type="text" id="document_number" name="document_number" value="%DOCUMENTO%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="document_type">Document type</label>
+                
+                                                                                                               <input type="text" id="document_type" name="document_type" value="%TIPO_DOCUMENTO%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                                                                                                       <div class="photo-container">
+                
+                                                                                                           Foto
+                
+                                                                                                       </div>
+                
+                                                                                                   </div>
+                
+                
+                
+                                                                                                   <div class="form-row">
+                
+                                                                                                       <div class="form-column">
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="name_surname">Name and surname</label>
+                
+                                                                                                               <input type="text" id="name_surname" name="name_surname" value="%NOME_COGNOME%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="gender">Gender</label>
+                
+                                                                                                               <select id="gender" name="gender" disabled="disabled">
+                
+                                                                                                                   <option value="M" %GENDER_M%>M</option>
+                
+                                                                                                                   <option value="F" %GENDER_F%>F</option>
+                
+                                                                                                                   <option value="Other" %GENDER_O%>Other</option>
+                
+                                                                                                               </select>
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="nationality">Nationality</label>
+                
+                                                                                                               <input type="text" id="nationality" name="nationality" value="%NAZIONALITA%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                                                                                                       <div class="form-column">
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="residence">Residence</label>
+                
+                                                                                                               <input type="text" id="residence" name="residence" value="%RESIDENZA%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="address">Address</label>
+                
+                                                                                                               <input type="text" id="address" name="address" value="%INDIRIZZO%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="city_country">City, Country</label>
+                
+                                                                                                               <input type="text" id="city_country" name="city_country" value="%CITTA_PAese%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                                                                                                       <div class="form-column">
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="birth_date">Birth date</label>
+                
+                                                                                                               <input type="date" id="birth_date" name="birth_date" value="%DATA_NASCITA%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="form-field">
+                
+                                                                                                               <label for="birth_place">Birth place</label>
+                
+                                                                                                               <input type="text" id="birth_place" name="birth_place" value="%LUOGO_NASCITA%" readonly="readonly" />
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                                                                                                   </div>
+                
+                
+                
+                                                                                                   <div class="privacy-section">
+                
+                                                                                                       <div class="privacy-title">Privacy</div>
+                
+                                                                                                       <div class="privacy-text">
+                
+                                                                                                           Io sottoscritto ai sensi della normativa vigente in materia di protezione dei dati personali (Regolamento UE n. 679 del 2016), ricevuta l'informativa sul trattamento dei miei dati personali:
+                
+                                                                                                       </div>
+                
+                
+                
+                                                                                                       <div class="privacy-option">
+                
+                                                                                                           <div class="privacy-option-text">
+                
+                                                                                                               la struttura ricettiva alla comunicazione esterna di dati relativi al mio soggiorno al fine esclusivo di consentire la funzione di ricevimento di messaggi e telefonate a me indirizzati
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="checkbox-group">
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="authorize1" name="privacy1" value="authorize" %PRIVACY1_AUTH% disabled="disabled" />
+                
+                                                                                                                   <label for="authorize1">AUTHORIZE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="decline1" name="privacy1" value="decline" %PRIVACY1_DECL% disabled="disabled" />
+                
+                                                                                                                   <label for="decline1">DECLINE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                
+                
+                                                                                                       <div class="privacy-option">
+                
+                                                                                                           <div class="privacy-option-text">
+                
+                                                                                                               la struttura ricettiva alla conservazione delle mie generalità al fine di accelerare le procedure di registrazione in caso di miei successivi soggiorni
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="checkbox-group">
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="authorize2" name="privacy2" value="authorize" %PRIVACY2_AUTH% disabled="disabled" />
+                
+                                                                                                                   <label for="authorize2">AUTHORIZE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="decline2" name="privacy2" value="decline" %PRIVACY2_DECL% disabled="disabled" />
+                
+                                                                                                                   <label for="decline2">DECLINE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                
+                
+                                                                                                       <div class="privacy-option">
+                
+                                                                                                           <div class="privacy-option-text">
+                
+                                                                                                               la struttura ricettiva all'invio di materiale pubblicitario e promozionale relativo ai servizi offerti
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="checkbox-group">
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="authorize3" name="privacy3" value="authorize" %PRIVACY3_AUTH% disabled="disabled" />
+                
+                                                                                                                   <label for="authorize3">AUTHORIZE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="decline3" name="privacy3" value="decline" %PRIVACY3_DECL% disabled="disabled" />
+                
+                                                                                                                   <label for="decline3">DECLINE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                
+                
+                                                                                                       <div class="privacy-option">
+                
+                                                                                                           <div class="privacy-option-text">
+                
+                                                                                                               la struttura ricettiva al trattamento di immagini e videosorveglianza
+                
+                                                                                                           </div>
+                
+                                                                                                           <div class="checkbox-group">
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="authorize4" name="privacy4" value="authorize" %PRIVACY4_AUTH% disabled="disabled" />
+                
+                                                                                                                   <label for="authorize4">AUTHORIZE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                               <div class="checkbox-option">
+                
+                                                                                                                   <input type="radio" id="decline4" name="privacy4" value="decline" %PRIVACY4_DECL% disabled="disabled" />
+                
+                                                                                                                   <label for="decline4">DECLINE</label>
+                
+                                                                                                               </div>
+                
+                                                                                                           </div>
+                
+                                                                                                       </div>
+                
+                                                                                                   </div>
+                
+                
+                
+                                                                                                   <div class="signature-section">
+                
+                                                                                                       <div class="signature-box"></div>
+                
+                                                                                                       <div class="date-signature">
+                
+                                                                                                           Firenze, 25/05/2025<br />
+                
+                                                                                                           Firma
+                
+                                                                                                       </div>
+                
+                                                                                                   </div>
+                
+                                                                                               </div>
+                
+        </body>
+        </html>
