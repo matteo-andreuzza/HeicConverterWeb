@@ -1,5 +1,6 @@
 import os
 import zipfile
+import shutil
 from flask import Flask, request, send_from_directory, render_template, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 from converter import convert_multiple_heic_files
@@ -19,6 +20,18 @@ app.config['CONVERTED_FOLDER'] = CONVERTED_FOLDER
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def clear_converted_folder_and_zip(folder):
+    # Svuota la cartella converted
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    # Cancella converted.zip se esiste
+    if os.path.exists(ZIP_PATH):
+        os.remove(ZIP_PATH)
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -33,6 +46,9 @@ def upload_file():
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
                 uploaded_files.append(filepath)
+
+        # Svuota la cartella converted e cancella lo zip PRIMA della nuova conversione
+        clear_converted_folder_and_zip(CONVERTED_FOLDER)
 
         # Convert files
         convert_multiple_heic_files(
@@ -51,6 +67,7 @@ def upload_file():
             for filename in os.listdir(CONVERTED_FOLDER):
                 file_path = os.path.join(CONVERTED_FOLDER, filename)
                 zipf.write(file_path, arcname=filename)
+            
 
         return redirect(url_for('download_page'))
     return render_template('index.html')
@@ -66,7 +83,9 @@ def download_file(filename):
 
 @app.route('/download_all')
 def download_all():
+    clear_converted_folder_and_zip(UPLOAD_FOLDER)
+    
     return send_file(ZIP_PATH, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
